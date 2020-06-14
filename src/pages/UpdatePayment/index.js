@@ -42,8 +42,6 @@ export default function New() {
     },
     validationSchema,
   });
-
-  /* Err span component */
   const Span = styled.span`
     color: #31b5ff;
     font-size: 1em;
@@ -52,7 +50,6 @@ export default function New() {
       font-size: 2em;
     }
   `;
-
   async function handleEditPayment(e) {
     e.preventDefault();
 
