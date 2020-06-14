@@ -13,8 +13,10 @@ export default function New() {
   const [title, setTitle] = useState("");
   const [value, setValue] = useState();
   const [date, setDate] = useState("");
-  const [external_tax, setExternalTax] = useState();
+  const [external_tax, setExternalTax] = useState(value * 0.05);
   const [comments, setComments] = useState("");
+
+  const [file, setFile] = useState();
 
   const history = useHistory();
 
@@ -37,8 +39,18 @@ export default function New() {
     }
   }
 
+  async function send(event) {
+    const data = new FormData();
+    data.append("file", file);
+
+    await api
+      .post("/upload", data)
+      .then((res) => console.log(res))
+      .catch((err) => alert(err));
+  }
+
   return (
-    <div className="new-incident-container">
+    <div className="new-payment-container">
       <div className="content">
         <section>
           <Link to="/payments">
@@ -50,6 +62,21 @@ export default function New() {
             Descreva o caso detalhamente para que possamos encontrar um herói
             que consiga resolve-lo{" "}
           </p>
+
+          <form action="#" className="upform">
+            <input
+              type="file"
+              id="file"
+              accept=".xlsx"
+              onChange={(event) => {
+                const file = event.target.files[0];
+                setFile(file);
+              }}
+            />
+            <button className="send-btn" type="submit" onClick={send}>
+              Send
+            </button>
+          </form>
 
           <Link className="back-link" to="/payments">
             <FiArrowLeft size={16} color="#326fff" />
@@ -75,11 +102,21 @@ export default function New() {
             onChange={(e) => setDate(e.target.value)}
             mask={[/\d/, /\d/, /\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/]}
           />
-          <input
-            placeholder="External Tax"
-            value={value * 0.05}
-            onChange={(e) => setExternalTax(e.target.value)}
-          />
+          {value ? (
+            <input
+              placeholder="External Tax"
+              value={value * 0.05}
+              onChange={(e) => setExternalTax(e.target.value)}
+              disabled
+            />
+          ) : (
+            <input
+              placeholder="External Tax"
+              value={"External Tax"}
+              onChange={(e) => setExternalTax(e.target.value)}
+              disabled
+            />
+          )}
           <textarea
             placeholder="Comments"
             value={comments}
