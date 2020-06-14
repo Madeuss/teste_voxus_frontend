@@ -33,6 +33,22 @@ export default function Payments() {
     }
   }
 
+  /* Update Payment Function */
+  async function handleUpdatePayment(payment) {
+    try {
+      localStorage.setItem("paymentId", payment.id);
+      localStorage.setItem("paymentTitle", payment.title);
+      localStorage.setItem("paymentValue", payment.value);
+      localStorage.setItem("paymentDate", payment.date);
+      localStorage.setItem("paymentTax", payment.external_tax);
+      localStorage.setItem("paymentComments", payment.comments);
+
+      history.push("/update");
+    } catch (err) {
+      alert("Erro ao deletar caso, tente novamente.");
+    }
+  }
+
   /* Logout function */
   function handleLogout() {
     localStorage.clear(); /* Clear the storage data */
@@ -57,6 +73,8 @@ export default function Payments() {
       <ul>
         {payments.map((payment) => (
           <li key={payment.id}>
+            <strong>Payment id: {payment.id}</strong>
+
             <strong>Title:</strong>
             <p>{payment.title}</p>
 
@@ -72,12 +90,20 @@ export default function Payments() {
             <strong>Comments:</strong>
             <p>{payment.comments}</p>
 
-            <button
-              onClick={() => handleDeletePayment(payment.id)}
-              type="button"
-            >
-              <FiTrash2 size={20} color="a8a8b3" />
-            </button>
+            <span className="payment-opts">
+              <button
+                onClick={() => handleDeletePayment(payment.id)}
+                type="button"
+              >
+                <FiTrash2 size={20} color="362fff" />
+              </button>
+              <button
+                onClick={() => handleUpdatePayment(payment)}
+                type="button"
+              >
+                <MdModeEdit size={20} color="362fff" />
+              </button>
+            </span>
           </li>
         ))}
       </ul>

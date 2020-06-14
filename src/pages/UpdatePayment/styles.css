@@ -44,20 +44,5 @@
 
 .new-payment-container .content form input,
 textarea {
-  margin-top: 8px !important;
-  font-size: 18px;
-}
-
-.upform {
-  display: grid;
-}
-
-.send-btn {
-  margin-top: 15px;
-  width: 100px;
-  height: 30px;
-  border-radius: 5px;
-  color: #fff;
-  border: none;
-  background-color: #467dff;
+  margin-top: 8px;
 }

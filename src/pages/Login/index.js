@@ -34,7 +34,7 @@ export default function Logon() {
         <img src={logoImg} width="60%" alt="Logo" />
 
         <form onSubmit={handleLogin}>
-          <h1>Faça seu Login</h1>
+          <h1>Login</h1>
 
           <input
             placeholder="Sua ID"
@@ -42,12 +42,12 @@ export default function Logon() {
             onChange={(e) => setId(e.target.value)}
           />
           <button className="button" type="submit">
-            Entrar
+            Enter
           </button>
 
           <Link className="back-link" to="/register">
             <FiLogIn size={16} color="#326fff" />
-            Não tenho cadastro
+            Register
           </Link>
         </form>
       </section>

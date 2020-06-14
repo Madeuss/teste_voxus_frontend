@@ -57,11 +57,19 @@
   position: relative;
 }
 
-.payment-container ul li button {
+.payment-container ul li .payment-opts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
   right: 24px;
   top: 24px;
-  border: 0;
+}
+
+.payment-container ul li button {
+  margin-left: 20px;
+  border: none;
+  background-color: transparent;
 }
 
 .payment-container ul li button:hover {
@@ -78,8 +86,8 @@
   margin-top: 32px;
 }
 
-.payment-container ul li p {
+.payment-container ul li p,
+.payment-container ul li .values-format {
   color: #737380;
   line-height: 21px;
-  font-size: 16px;
 }
